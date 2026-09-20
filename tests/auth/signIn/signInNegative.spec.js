@@ -36,7 +36,6 @@ testParameters.forEach(({ email, password, message, title }) => {
       await signInPage.fillPasswordField(password);
       await signInPage.clickSignInButton();
       await signInPage.assertErrorMessageContainsText(message);
-      await
     });
   });
 });
