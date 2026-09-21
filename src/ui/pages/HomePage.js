@@ -6,7 +6,7 @@ export class HomePage {
     this.userId = userId;
     this.yourFeedTab = page.getByText('Your Feed');
     this.newArticleLink = page.getByRole('link', { name: 'New Article' });
-    this.sittingsButton = page.getByRole('link', { name: '  Settings' });
+    this.sittingsButton = page.getByRole('link', { name: '  Settings' });
   }
 
   async step(title, stepToRun) {
@@ -22,6 +22,12 @@ export class HomePage {
   async assertYourFeedTabIsVisible() {
     await this.step(`Assert the 'Your Feed' tab is visible`, async () => {
       await expect(this.yourFeedTab).toBeVisible();
+    });
+  }
+
+  async assertYourFeedTabIsNotVisible() {
+    await this.step(`Assert the 'Your Feed' tab is not visible`, async () => {
+      await expect(this.yourFeedTab).toBeHidden();
     });
   }
 

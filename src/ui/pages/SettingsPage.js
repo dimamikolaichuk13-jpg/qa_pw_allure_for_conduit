@@ -12,6 +12,9 @@ export class SettingsPage {
     this.buttonUpdateSettings = page.getByRole('button', {
       name: 'Update Settings',
     });
+    this.buttonLogOut = page.getByRole('button', {
+      name: 'Or click here to logout.',
+    });
   }
 
   async step(title, stepToRun) {
@@ -57,6 +60,12 @@ export class SettingsPage {
   async clickButtonUpdateSettings() {
     await this.step(`Click the 'Update Settings' button`, async () => {
       await this.buttonUpdateSettings.click();
+    });
+  }
+
+  async clickButtonLogOut() {
+    await this.step(`Click the 'LogOut' button`, async () => {
+      await this.buttonLogOut.click();
     });
   }
 }

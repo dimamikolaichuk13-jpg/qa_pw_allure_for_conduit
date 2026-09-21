@@ -5,6 +5,9 @@ export class ProfilePage {
   constructor(page, userId = 0) {
     this.page = page;
     this.userId = userId;
+    this.userProfileImage = page.getByRole('img', {
+      name: "User's profile image",
+    });
   }
 
   async step(title, stepToRun) {
@@ -23,6 +26,22 @@ export class ProfilePage {
         name: username,
       });
       await expect(usernameHeading).toBeVisible();
+    });
+  }
+
+  async assertProfileImageSrc(expectedUrl) {
+    await this.step(
+      `Verify user profile image source is: ${expectedUrl}`,
+      async () => {
+        await expect(this.userProfileImage).toHaveAttribute('src', expectedUrl);
+      },
+    );
+  }
+
+  async assertShortBioVisible(shortBio) {
+    await this.step(`Verify short bio is visible: ${shortBio}`, async () => {
+      const bioElement = this.page.getByText(shortBio);
+      await expect(bioElement).toBeVisible();
     });
   }
 }
